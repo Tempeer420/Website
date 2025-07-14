@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:website/main_page/main_content.dart';
+import 'package:website/cv_page/cv_page.dart';
 
 class HeaderField extends StatelessWidget {
   const HeaderField({super.key});
@@ -8,27 +10,55 @@ class HeaderField extends StatelessWidget {
     return Container(
       height: 67,
       width: double.infinity,
-      color: const Color(0x1C8B8B8B),
+      color: Colors.white,
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Text(
-            'Axel Olsson',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontFamily: 'Arimo',
-              fontWeight: FontWeight.w700,
+        children: [
+          // Tappable "Axel Olsson" → opens home‐screen layout
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) {
+                  return Scaffold(
+                    body: Column(
+                      children: const [
+                        HeaderField(),   // white header again
+                        Expanded(         // gives MainContent room to expand
+                          child: MainContent(),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+              );
+            },
+            child: const Text(
+              'Axel Olsson',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontFamily: 'Arimo',
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
-          Text(
-            'CV',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontFamily: 'Arimo',
-              fontWeight: FontWeight.w700,
+
+          // Tappable "CV" → opens CV page
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const CVPage()),
+              );
+            },
+            child: const Text(
+              'CV',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontFamily: 'Arimo',
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ],
