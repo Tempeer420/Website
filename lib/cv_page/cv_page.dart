@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:website/main_page/header_field.dart';
+import 'package:flutter/foundation.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'web_pdf_viewer.dart';
 
 class CVPage extends StatelessWidget {
   const CVPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    const driveId = '1-sWplUuEzLRt0fa-YOeZ2NZjziEF8WFN';
+    const pdfUrl = 'https://drive.google.com/uc?export=download&id=$driveId';
+    final previewUrl = 'https://drive.google.com/file/d/$driveId/preview';
+
     return Scaffold(
       body: Stack(
         children: [
-          // 1) Animated cloud background
           Positioned.fill(
             child: Lottie.asset(
               'assets/animations/cloud_animation.json',
@@ -19,21 +24,14 @@ class CVPage extends StatelessWidget {
               repeat: true,
             ),
           ),
-
-          // 2) Column med header + PDF + download-knapp
           Column(
             children: [
-              // Din delade, tappbara header
               const HeaderField(),
-
-              // PDF-viewern fyller resterande yta
               Expanded(
-                child: SfPdfViewer.network(
-                  'https://drive.google.com/uc?export=download&id=1-sWplUuEzLRt0fa-YOeZ2NZjziEF8WFN',
-                ),
+                child: kIsWeb
+                    ? WebPdfViewer(url: previewUrl)
+                    : SfPdfViewer.network(pdfUrl),
               ),
-
-              // Ladda ner-knapp längst ner (valfritt)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                 child: ElevatedButton.icon(
