@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:url_launcher/url_launcher.dart';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
 import 'package:website/main_page/header_field.dart';
-import 'package:flutter/foundation.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'web_pdf_viewer.dart';
 
 class CVPage extends StatelessWidget {
   const CVPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const driveId = '1-sWplUuEzLRt0fa-YOeZ2NZjziEF8WFN';
-    const pdfUrl = 'https://drive.google.com/uc?export=download&id=$driveId';
-    final previewUrl = 'https://drive.google.com/file/d/$driveId/preview';
-
     return Scaffold(
       body: Stack(
         children: [
@@ -28,25 +24,103 @@ class CVPage extends StatelessWidget {
             children: [
               const HeaderField(),
               Expanded(
-                child: kIsWeb
-                    ? WebPdfViewer(url: previewUrl)
-                    : SfPdfViewer.network(pdfUrl),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    // TODO: implementera faktisk nedladdning (t ex url_launcher)
-                  },
-                  icon: const Icon(Icons.download),
-                  label: const Text('Ladda ner CV'),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 32,
-                      vertical: 16,
+                child: ListView(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24, bottom: 8),
+                      child: Center(
+                        child: ElevatedButton.icon(
+                          onPressed: () async {
+                            const cvUrl = 'assets/cv/CV.pdf';
+                            if (Theme.of(context).platform == TargetPlatform.android ||
+                                Theme.of(context).platform == TargetPlatform.iOS) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('Öppnar CV i webbläsaren...')),
+                              );
+                              await launchUrl(Uri.parse(cvUrl));
+                            } else {
+                              html.AnchorElement(href: cvUrl)
+                                ..setAttribute('download', 'CV.pdf')
+                                ..click();
+                            }
+                          },
+                          icon: const Icon(Icons.download, color: Colors.black),
+                          label: const Text('Ladda ner CV', style: TextStyle(color: Colors.black)),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 24,
+                              vertical: 12,
+                            ),
+                            backgroundColor: Colors.white,
+                            minimumSize: const Size(0, 0),
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                    backgroundColor: Colors.blueAccent,
-                  ),
+                    const SizedBox(height: 18),
+                    Center(
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(16),
+                        child: Container(
+                          constraints: const BoxConstraints(
+                            maxWidth: 720,
+                            maxHeight: 1018,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 24,
+                                spreadRadius: 2,
+                                offset: Offset(0, 8),
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset('assets/cv/1.png', fit: BoxFit.contain),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    Center(
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(16),
+                        child: Container(
+                          constraints: const BoxConstraints(
+                            maxWidth: 720,
+                            maxHeight: 1018,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 24,
+                                spreadRadius: 2,
+                                offset: Offset(0, 8),
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset('assets/cv/2.png', fit: BoxFit.contain),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                  ],
                 ),
               ),
             ],

@@ -58,7 +58,7 @@ class MainContent extends StatelessWidget {
                             'Student på SU, Institutionen för Data- och Systemvetenskap ',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Color(0xAD004AAD),
+                              color: Colors.black,
                               fontSize: 24,
                               fontFamily: 'Arimo',
                               fontWeight: FontWeight.w700,
@@ -68,7 +68,7 @@ class MainContent extends StatelessWidget {
                         const SizedBox(height: 32),
                         // Ikoner
                         SizedBox(
-                          width: 88,
+                          width: 140,
                           height: 36,
                           child: Stack(
                             children: [
@@ -80,7 +80,7 @@ class MainContent extends StatelessWidget {
                                   height: 36,
                                   decoration: const BoxDecoration(
                                     image: DecorationImage(
-                                      image: AssetImage("assets/icons/gmail.png"),
+                                      image: AssetImage("assets/icons/LinkedIn_icon.png"),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -94,7 +94,21 @@ class MainContent extends StatelessWidget {
                                   height: 36,
                                   decoration: const BoxDecoration(
                                     image: DecorationImage(
-                                      image: AssetImage("assets/icons/linkedin.png"),
+                                      image: AssetImage("assets/icons/Gmail_icon.png"),
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                left: 104,
+                                top: 0,
+                                child: Container(
+                                  width: 36,
+                                  height: 36,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage("assets/icons/github-mark-white.png"),
                                       fit: BoxFit.cover,
                                     ),
                                   ),

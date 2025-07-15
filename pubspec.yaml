@@ -34,8 +34,10 @@ flutter:
     - assets/animations/link_animation.json
     - assets/animations/planet_animation.json
     - assets/animations/cloud_animation.json
-    - assets/icons/gmail.png
-    - assets/icons/linkedin.png
+    - assets/icons/LinkedIn_icon.png
+    - assets/icons/Gmail_icon.png
+    - assets/icons/github-mark.png
+    - assets/icons/github-mark-white.png
     - assets/cv/CV.pdf
     - assets/cv/1.png
     - assets/cv/2.png
