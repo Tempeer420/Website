@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:website/main_page/cv_timeline.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainContent extends StatelessWidget {
   const MainContent({super.key});
@@ -130,16 +131,28 @@ class MainContent extends StatelessWidget {
                               Positioned(
                                 left: 120,
                                 top: 0,
-                                child: Container(
-                                  width: 44,
-                                  height: 44,
-                                  padding: const EdgeInsets.all(4),
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                                  ),
-                                  child: Image.asset(
-                                    "assets/icons/github-mark-white.png",
-                                    fit: BoxFit.contain,
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: Tooltip(
+                                    message: 'Website',
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        const url = 'https://github.com/Tempeer420/Website';
+                                        await launchUrl(Uri.parse(url));
+                                      },
+                                      child: Container(
+                                        width: 44,
+                                        height: 44,
+                                        padding: const EdgeInsets.all(4),
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                                        ),
+                                        child: Image.asset(
+                                          "assets/icons/github-mark-white.png",
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
