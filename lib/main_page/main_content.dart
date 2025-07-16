@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:website/main_page/cv_timeline.dart';
 
@@ -34,9 +35,16 @@ class MainContent extends StatelessWidget {
                         Container(
                           width: 150,
                           height: 150,
-                          decoration: const ShapeDecoration(
-                            color: Color(0xFFD9D9D9),
-                            shape: OvalBorder(),
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          clipBehavior: Clip.antiAlias,
+                          child: Transform.scale(
+                            scale: 1.05,
+                            child: Image.asset(
+                              'assets/cv/profil_bild.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 32),
@@ -68,49 +76,70 @@ class MainContent extends StatelessWidget {
                         const SizedBox(height: 32),
                         // Ikoner
                         SizedBox(
-                          width: 140,
-                          height: 36,
+                          width: 180,
+                          height: 48,
                           child: Stack(
                             children: [
                               Positioned(
                                 left: 0,
                                 top: 0,
                                 child: Container(
-                                  width: 36,
-                                  height: 36,
+                                  width: 46,
+                                  height: 46,
+                                  padding: const EdgeInsets.all(4),
                                   decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage("assets/icons/LinkedIn_icon.png"),
-                                      fit: BoxFit.cover,
+                                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                                  ),
+                                  child: Image.asset(
+                                    "assets/icons/LI-In-Bug.png",
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                left: 59,
+                                top: 0,
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: Tooltip(
+                                    message: 'axel.olsson123@gmail.com',
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        await Clipboard.setData(const ClipboardData(text: 'axel.olsson123@gmail.com'));
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          const SnackBar(
+                                            content: Text('E-postadress kopierad!'),
+                                            duration: Duration(seconds: 2),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        width: 44,
+                                        height: 44,
+                                        decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage("assets/icons/Gmail_icon.png"),
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                               Positioned(
-                                left: 52,
+                                left: 120,
                                 top: 0,
                                 child: Container(
-                                  width: 36,
-                                  height: 36,
+                                  width: 44,
+                                  height: 44,
+                                  padding: const EdgeInsets.all(4),
                                   decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage("assets/icons/Gmail_icon.png"),
-                                      fit: BoxFit.contain,
-                                    ),
+                                    borderRadius: BorderRadius.all(Radius.circular(8)),
                                   ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 104,
-                                top: 0,
-                                child: Container(
-                                  width: 36,
-                                  height: 36,
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage("assets/icons/github-mark-white.png"),
-                                      fit: BoxFit.cover,
-                                    ),
+                                  child: Image.asset(
+                                    "assets/icons/github-mark-white.png",
+                                    fit: BoxFit.contain,
                                   ),
                                 ),
                               ),
@@ -128,42 +157,48 @@ class MainContent extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 0),
                   child: Container(
                     constraints: const BoxConstraints(maxWidth: 1300),
-                    height: 250,
                     decoration: BoxDecoration(
-                      color: Colors.white, // Ändrad från Color(0x1C8B8B8B) till vit
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Center(
-                      child: Container(
-                        alignment: Alignment.topLeft,
-                        margin: const EdgeInsets.only(top: 36),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: Text.rich(
-                              TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: 'Hej!\n\n',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontFamily: 'Arimo',
-                                      fontWeight: FontWeight.w700,
+                      child: IntrinsicHeight(
+                        child: Container(
+                          alignment: Alignment.topLeft,
+                          margin: const EdgeInsets.only(top: 36),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Hej!\n\n',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        fontFamily: 'Arimo',
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'Jag heter Axel och är student på Stockholms Universitet.\nJag studerar till en kandidatexamen i Data- och systemvetenskap vid Stockholms universitet och tar examen våren 2026. Mitt stora intresse för IT, och främst IT-säkerhet, har lett till att jag har valt att nischa min utbildning mot denna bransch och jag ser fram emot att kunna utöka mina kunskaper inom området.\n',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontFamily: 'Arimo',
-                                      fontWeight: FontWeight.w400,
+                                    TextSpan(
+                                      text:
+                                          'Jag heter Axel och är student på Stockholms Universitet.\nJag studerar till en kandidatexamen i Data- och systemvetenskap vid Stockholms universitet och tar examen våren 2026. Mitt stora intresse för IT, och främst IT-säkerhet, har lett till att jag har valt att nischa min utbildning mot denna bransch. IT-säkerhetskurser som jag läst består av:\n'
+                                          '\n- säk1 (Informationssäkerhet - modeller och synsätt)\n'
+                                          '- säk2 (Informations- och datasäkerhet)\n'
+                                          '- DIFO (Digital forensik)\n'
+                                          '- SECORG (Informationssäkerhet i organisationer)\n'
+                                          'Utöver detta har jag även läst kurser inom projektledning, systemutveckling, databashantering, programmering, sökmotorer m.m.\n',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        fontFamily: 'Arimo',
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -174,14 +209,11 @@ class MainContent extends StatelessWidget {
                 ),
                 // Centrera CvTimeline
                 const SizedBox(height: 150),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: 700),
-                      child: const CvTimeline(),
-                    ),
-                  ],
+                Center(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: 700),
+                    child: const CvTimeline(),
+                  ),
                 ),
                 const SizedBox(height: 150),
               ],
