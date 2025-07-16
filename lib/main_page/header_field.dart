@@ -18,7 +18,6 @@ class HeaderField extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Tappable "Axel Olsson" → opens home‐screen layout
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
@@ -28,8 +27,8 @@ class HeaderField extends StatelessWidget {
                       return Scaffold(
                         body: Column(
                           children: const [
-                            HeaderField(),   // white header again
-                            Expanded(         // gives MainContent room to expand
+                            HeaderField(),
+                            Expanded(
                               child: MainContent(),
                             ),
                           ],
@@ -50,7 +49,6 @@ class HeaderField extends StatelessWidget {
               ),
             ),
 
-            // Tappable "CV" → opens CV page
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(

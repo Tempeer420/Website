@@ -12,7 +12,6 @@ class MainContent extends StatelessWidget {
     return Expanded(
       child: Stack(
         children: [
-          // Animated cloud background
           Positioned.fill(
             child: Lottie.asset(
               'assets/animations/cloud_animation.json',
@@ -20,11 +19,9 @@ class MainContent extends StatelessWidget {
               repeat: true,
             ),
           ),
-          // Main content
           SingleChildScrollView(
             child: Column(
               children: [
-                // Första sektionen (profil)
                 SizedBox(
                   width: double.infinity,
                   child: Center(
@@ -32,7 +29,6 @@ class MainContent extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(height: 64),
-                        // Profilbild
                         Container(
                           width: 150,
                           height: 150,
@@ -60,7 +56,6 @@ class MainContent extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 24),
-                        // Beskrivning
                         const SizedBox(
                           width: 700,
                           child: Text(
@@ -75,7 +70,6 @@ class MainContent extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 32),
-                        // Ikoner
                         SizedBox(
                           width: 180,
                           height: 48,
@@ -164,7 +158,6 @@ class MainContent extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Andra sektionen (scrolla ner)
                 const SizedBox(height: 500),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 0),
@@ -220,7 +213,6 @@ class MainContent extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Centrera CvTimeline
                 const SizedBox(height: 150),
                 Center(
                   child: ConstrainedBox(
