@@ -106,12 +106,12 @@ class CvTimeline extends StatelessWidget {
             padding: const EdgeInsets.all(19.2),
             child: ListTile(
               title: const Text(
-                'Servicetekniker',
+                'Hållplatsserviceman',
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               subtitle: const Text(
                 'Keolis | 2022 – | Stockholm\n'
-                'Jobbar extra som serviceman av busshållplatser med ansvar för klottersanering, hantering av hållplatsflyttar, glaskross samt felsökning och byte av elektronik i hållplatsskydd, m.m.',
+                'Arbetar extra som serviceman av busshållplatser med ansvar för klottersanering, hantering av hållplatsflyttar, glaskross samt felsökning och byte av elektronik i hållplatsskydd, m.m.',
                 style: TextStyle(color: Colors.white70, fontSize: 16.8),
               ),
             ),

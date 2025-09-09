@@ -78,16 +78,28 @@ class MainContent extends StatelessWidget {
                               Positioned(
                                 left: 0,
                                 top: 0,
-                                child: Container(
-                                  width: 46,
-                                  height: 46,
-                                  padding: const EdgeInsets.all(4),
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                                  ),
-                                  child: Image.asset(
-                                    "assets/icons/LI-In-Bug.png",
-                                    fit: BoxFit.contain,
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: Tooltip(
+                                    message: 'LinkedIn',
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        const url = 'https://www.linkedin.com/in/axel-olsson-6b0b2b381/';
+                                        await launchUrl(Uri.parse(url));
+                                      },
+                                      child: Container(
+                                        width: 46,
+                                        height: 46,
+                                        padding: const EdgeInsets.all(4),
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                                        ),
+                                        child: Image.asset(
+                                          "assets/icons/LI-In-Bug.png",
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
