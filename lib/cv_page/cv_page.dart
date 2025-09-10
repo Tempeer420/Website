@@ -30,7 +30,7 @@ class CVPage extends StatelessWidget {
                       child: Center(
                         child: ElevatedButton.icon(
                           onPressed: () async {
-                            const cvUrl = 'assets/cv/Axel Olsson CV.pdf';
+                            const cvUrl = 'assets/cv/Axel_Olsson_CV.pdf';
                             if (Theme.of(context).platform == TargetPlatform.android ||
                                 Theme.of(context).platform == TargetPlatform.iOS) {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -39,7 +39,7 @@ class CVPage extends StatelessWidget {
                               await launchUrl(Uri.parse(cvUrl));
                             } else {
                               html.AnchorElement(href: cvUrl)
-                                ..setAttribute('download', 'Axel Olsson CV.pdf')
+                                ..setAttribute('download', 'Axel_Olsson_CV.pdf')
                                 ..click();
                             }
                           },
